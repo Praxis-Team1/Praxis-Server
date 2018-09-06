@@ -2,7 +2,6 @@
   "name": "project",
   "version": "0.0.0",
   "description": "description",
-  "main" : "dist/main.js",
   "author": "",
   "license": "MIT",
   "scripts": {
