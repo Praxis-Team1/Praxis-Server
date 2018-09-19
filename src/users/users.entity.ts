@@ -49,7 +49,4 @@ export class User {
     })
     biographic: string;
 
-
-
-
 }
