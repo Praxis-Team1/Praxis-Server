@@ -1,6 +1,6 @@
 import { IsString, IsInt, IsIn, IsAlpha, IsEmail, Contains, MinLength, Matches, IsAlphanumeric, IsBoolean, Max, IsUrl, IsOptional } from 'class-validator';
 
-export class CreateStudentDto{
+export class Student{
     @IsInt()
     readonly documentNumber: number;
     @IsIn(["cedula de ciudadania", "tarjeta de identidad", "cedula de extranjeria"])
