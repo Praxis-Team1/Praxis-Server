@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 
@@ -9,6 +9,13 @@ export class UsersController {
     @Get()
     findAll(): Promise<User[]> {
         return this.UsersSevice.findAll();
+    }
+
+    @Post()
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async create(@Body() createUser: User): Promise<User> {
+        const user = await this.UsersSevice.create(createUser);
+        return user;
     }
 
 }
