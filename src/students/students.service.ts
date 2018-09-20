@@ -5,6 +5,7 @@ import {User } from '../users/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import {CreateStudentDto} from './createStudentDto'
 import { UsersService } from 'users/users.service';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class StudentsService {
@@ -15,7 +16,7 @@ export class StudentsService {
       ) {}
 
     
-      async create(studentDto: CreateStudentDto): Promise<Student>{
+      async create(studentDto: CreateStudentDto): Promise<Object>{
 
         let createdUser = new User();
         createdUser.biographic = studentDto.biographic;
@@ -24,7 +25,9 @@ export class StudentsService {
         createdUser.email= studentDto.email;
         createdUser.lastName = studentDto.lastName;
         createdUser.name  = studentDto.name;
-        createdUser.password = studentDto.password;
+        //Hash the password
+        let hash = bcrypt.hashSync(studentDto.password, 10);
+        createdUser.password = hash;
         //Create the user using the service UsersService
         await this.usersService.create(createdUser);
         //Create the student
@@ -35,7 +38,12 @@ export class StudentsService {
         createdStudent.typeOfPraxis = studentDto.typeOfPraxis;
         createdStudent.university = studentDto.university;
         createdStudent.videoUrl = studentDto.videoUrl;
-        return await this.studentRepository.save(createdStudent)
+        try{
+          await this.studentRepository.save(createdStudent);
+          return {message: "correctly saved"};
+        }catch(err){
+          return {message: "Error saving", error:err};;
+        }
       }
 }
  
