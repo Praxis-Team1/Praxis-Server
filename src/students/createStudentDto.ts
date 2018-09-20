@@ -34,8 +34,6 @@ export class CreateStudentDto{
     @IsIn(["Universidad Nacional de Colombia"])
     readonly university: string;
 
-    @IsBoolean()
-    readonly admited: boolean;
 
     @IsInt()
     @Max(20)

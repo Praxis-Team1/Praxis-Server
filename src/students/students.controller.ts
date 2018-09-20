@@ -1,5 +1,4 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import {Student} from './student.entity'
 import {CreateStudentDto} from './createStudentDto';
 import {CreateValidationPipe} from '../pipes/ValidationPipe'
 import {StudentsService} from './students.service'

@@ -10,16 +10,12 @@ export class User {
     id: number;
 
     @Column({
-        type: "int",
         unique: true
     })
     documentNumber: number;
 
-    @Column({
-        type: "enum",
-        enum: TYPES
-    })
-    documentType;
+    @Column()
+    documentType: string;
 
     @Column({
         type: "varchar",

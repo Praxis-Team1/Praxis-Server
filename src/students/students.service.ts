@@ -29,12 +29,13 @@ export class StudentsService {
         await this.usersService.create(createdUser);
         //Create the student
         let createdStudent = new Student();
-        createdStudent.admited = studentDto.admited;
+        createdStudent.user = createdUser;
+        createdStudent.admited = false;
         createdStudent.semester = studentDto.semester;
         createdStudent.typeOfPraxis = studentDto.typeOfPraxis;
         createdStudent.university = studentDto.university;
-        createdStudent.user = createdUser;
         createdStudent.videoUrl = studentDto.videoUrl;
         return await this.studentRepository.save(createdStudent)
       }
 }
+ 
