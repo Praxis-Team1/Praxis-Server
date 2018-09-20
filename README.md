@@ -36,3 +36,16 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+##.env file
+
+This project need a .env file to run. Just create a file call .env in the src folder. This file should look like this:
+
+```
+NODE_ENV=development
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=password
+DB_NAME=db_name
+
+```
