@@ -1,9 +1,9 @@
 import { IsString, IsInt, IsIn, IsEmail, Contains, MinLength, Matches, IsBoolean, Max, IsUrl, IsOptional } from 'class-validator';
-import {Entity, OneToOne, JoinColumn, Column } from 'typeorm'
-import {User} from '../users/users.entity'
+import { Entity, OneToOne, JoinColumn, Column } from 'typeorm'
+import { User } from 'users/dto/users.entity'
 
 @Entity()
-export class CreateStudentDto{
+export class CreateStudentDto {
 
     @IsInt()
     readonly documentNumber: number;
@@ -41,7 +41,7 @@ export class CreateStudentDto{
 
     @IsIn(['first job', 'practice one semester later', 'practice two semester later'])
     readonly typeOfPraxis: string;
-    
+
     @IsUrl()
     readonly videoUrl: string;
 }
