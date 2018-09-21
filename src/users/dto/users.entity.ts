@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IsEmail } from 'class-validator'
 
-import { TYPES } from '../enums/documentTypes';
+import { TYPES } from 'enums/documentTypes';
 
 @Entity()
 export class User {
