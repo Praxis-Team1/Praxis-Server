@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { StudentsController } from './students.controller';
-import {Student} from './student.entity';
+import { Student } from '../dto/student.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StudentsService } from './students.service';
-import { UsersModule } from 'users/users.module';
+import { UsersModule } from 'users/repository/users.module';
 
 
 @Module({
@@ -11,4 +11,4 @@ import { UsersModule } from 'users/users.module';
   controllers: [StudentsController],
   providers: [StudentsService]
 })
-export class StudentsModule {}
+export class StudentsModule { }
