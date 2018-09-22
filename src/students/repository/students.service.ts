@@ -19,11 +19,10 @@ export class StudentsService {
   async create(studentDto: CreateStudentDto): Promise<Object> {
 
     let createdUser = new User();
-    createdUser.biographic = studentDto.biographic;
+    createdUser.biography = studentDto.biography;
     createdUser.documentNumber = studentDto.documentNumber;
     createdUser.documentType = studentDto.documentType;
     createdUser.email = studentDto.email;
-    createdUser.lastName = studentDto.lastName;
     createdUser.name = studentDto.name;
     //Hash the password
     let hash = bcrypt.hashSync(studentDto.password, 10);

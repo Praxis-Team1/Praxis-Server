@@ -15,7 +15,6 @@ export class Student {
     admited: boolean;
 
     @Column()
-
     semester: number;
 
     @Column()
