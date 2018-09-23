@@ -20,6 +20,7 @@
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
     "@nestjs/typeorm": "^5.2.2",
+    "@sendgrid/mail": "^6.3.1",
     "@types/bcrypt": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.1.9",
