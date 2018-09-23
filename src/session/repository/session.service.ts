@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Session } from './session.entity';
+import { Session } from '../dto/session.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -12,7 +12,7 @@ export class SessionService {
     ) { }
 
     async findAll(): Promise<Session[]> {
-        return await this.sessionRepository.find({ 
+        return await this.sessionRepository.find({
             order: {
                 date: "ASC",
             }

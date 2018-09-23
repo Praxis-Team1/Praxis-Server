@@ -7,6 +7,7 @@ import { UsersModule } from 'users/repository/users.module';
 import { AuthController } from './auth.controller';
 
 require('dotenv').config()
+
 @Module({
   providers: [AuthService, JwtStrategy],
   imports: [
@@ -21,4 +22,4 @@ require('dotenv').config()
   ],
   controllers: [AuthController],
 })
-export class AuthModule {}
+export class AuthModule { }

@@ -3,14 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../dto/users.entity';
 import { EmailService } from '../../email/repository/email.service'
-import {CredentialsDTO} from 'auth/interfaces/credentials.dto';
-import {JwtPayload} from 'auth/interfaces/jwt-payload.interface';
+import { CredentialsDTO } from 'auth/dto/credentials.dto';
+import { JwtPayload } from 'auth/dto/jwt-payload.interface';
 
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
-    
+
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>
@@ -24,13 +24,13 @@ export class UsersService {
         return await this.userRepository.save(user);
     }
 
-    async validateCredentials(user: CredentialsDTO): Promise<Boolean>{
-        let userDB : User = await this.userRepository.findOne({email:user.email});
-        let hash = bcrypt.compareSync(user.password,userDB.password);
+    async validateCredentials(user: CredentialsDTO): Promise<Boolean> {
+        let userDB: User = await this.userRepository.findOne({ email: user.email });
+        let hash = bcrypt.compareSync(user.password, userDB.password);
         return hash;
-    } 
+    }
 
     async validateUser(payload: JwtPayload): Promise<User> {
-        return await this.userRepository.findOne({email:payload.email});
+        return await this.userRepository.findOne({ email: payload.email });
     }
 }

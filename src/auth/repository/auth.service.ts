@@ -1,22 +1,22 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { JwtPayload } from '../dto/jwt-payload.interface';
 import { UsersService } from 'users/repository/users.service';
-import {CredentialsDTO} from './interfaces/credentials.dto'
+import { CredentialsDTO } from '../dto/credentials.dto'
 
 @Injectable()
 export class AuthService {
-  
+
     constructor(
         private readonly jwtService: JwtService,
         private readonly usersService: UsersService,
-    ){}
+    ) { }
 
-    async signIn(user:CredentialsDTO){
-        //VALIDATE IF USER HAS ACCES
+    async signIn(user: CredentialsDTO) {
+        //VALIDATE IF USER HAS ACCESS
         let validation = await this.usersService.validateCredentials(user);
-        if(validation){
-            let jwtUser:JwtPayload = {email:user.email}; 
+        if (validation) {
+            let jwtUser: JwtPayload = { email: user.email };
             return this.jwtService.sign(jwtUser)
         }
         throw new UnauthorizedException('Credentials are not correct');;
@@ -24,5 +24,5 @@ export class AuthService {
 
     async validateUser(payload: JwtPayload): Promise<any> {
         return await this.usersService.validateUser(payload);
-      }
+    }
 }

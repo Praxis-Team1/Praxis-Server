@@ -5,11 +5,11 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('session')
 export class SessionController {
-    constructor(private readonly sessionService: SessionService){}
+    constructor(private readonly sessionService: SessionService) { }
 
     @Get()
     @UseGuards(AuthGuard('jwt'))
-    FindAll(){
+    FindAll() {
         return this.sessionService.findAll();
     }
 }
