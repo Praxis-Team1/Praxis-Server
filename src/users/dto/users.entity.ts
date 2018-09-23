@@ -1,7 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
-import { IsEmail } from 'class-validator'
-
-import { TYPES } from 'enums/documentTypes';
 
 @Entity()
 export class User {
@@ -10,7 +7,7 @@ export class User {
     id: number;
 
     @Index({ unique: true })
-    @Column({ })
+    @Column({})
     documentNumber: number;
 
     @Column()
@@ -23,11 +20,10 @@ export class User {
     name: string;
 
     @Column()
-    birthday: string;
+    birthdate: string;
 
-    @Index()
+    @Index({ unique: true })
     @Column()
-    @IsEmail()
     email: string;
 
     @Index({ unique: true })
@@ -39,7 +35,7 @@ export class User {
 
     @Column({
         type: "varchar",
-        length: 250,
+        length: 500,
     })
     biography: string;
 

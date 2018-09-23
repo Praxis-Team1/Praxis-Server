@@ -15,33 +15,42 @@ export class StudentsService {
     private readonly usersService: UsersService
   ) { }
 
-
   async create(studentDto: CreateStudentDto): Promise<Object> {
 
-    let createdUser = new User();
-    createdUser.biography = studentDto.biography;
+    const createdUser = new User();
+
     createdUser.documentNumber = studentDto.documentNumber;
     createdUser.documentType = studentDto.documentType;
-    createdUser.email = studentDto.email;
     createdUser.name = studentDto.name;
+    createdUser.birthdate = studentDto.birthdate;
+    createdUser.email = studentDto.email;
+    createdUser.biography = studentDto.biography;
+
     //Hash the password
-    let hash = bcrypt.hashSync(studentDto.password);
+    const hash = bcrypt.hashSync(studentDto.password);
     createdUser.password = hash;
+
     //Create the user using the service UsersService
-    await this.usersService.create(createdUser);
-    //Create the student
-    let createdStudent = new Student();
-    createdStudent.user = createdUser;
-    createdStudent.admited = false;
-    createdStudent.semester = studentDto.semester;
-    createdStudent.typeOfPraxis = studentDto.typeOfPraxis;
-    createdStudent.university = studentDto.university;
-    createdStudent.videoUrl = studentDto.videoUrl;
+
     try {
+      const newUser = await this.usersService.create(createdUser);
+
+      //Create the student
+      const createdStudent = new Student();
+      createdStudent.user = createdUser;
+      createdStudent.admited = false;
+      createdStudent.semester = studentDto.semester;
+      createdStudent.typeOfPraxis = studentDto.typeOfPraxis;
+      createdStudent.university = studentDto.university;
+      createdStudent.videoUrl = studentDto.videoUrl;
+
       await this.studentRepository.save(createdStudent);
       return { message: "correctly saved" };
-    } catch (err) {
-      return { message: "Error saving", error: err };;
+
+    } catch (error) {
+      return { message: "Error saving" };
+
     }
+
   }
 }
