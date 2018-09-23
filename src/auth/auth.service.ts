@@ -19,7 +19,7 @@ export class AuthService {
             let jwtUser:JwtPayload = {email:user.email}; 
             return this.jwtService.sign(jwtUser)
         }
-        throw new UnauthorizedException('Credential are not correct');;
+        throw new UnauthorizedException('Credentials are not correct');;
     }
 
     async validateUser(payload: JwtPayload): Promise<any> {

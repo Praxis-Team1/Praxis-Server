@@ -9,8 +9,8 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Index()
-    @Column({})
+    @Index({ unique: true })
+    @Column({ })
     documentNumber: number;
 
     @Column()
@@ -30,6 +30,7 @@ export class User {
     @IsEmail()
     email: string;
 
+    @Index({ unique: true })
     @Column({
         type: "varchar",
         length: 150,

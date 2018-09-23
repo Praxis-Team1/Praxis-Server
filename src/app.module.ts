@@ -4,6 +4,7 @@ import { UsersModule } from 'users/repository/users.module';
 import { StudentsModule } from 'students/repository/students.module';
 import { EmailModule } from 'email/repository/email.module';
 import { AuthModule } from './auth/auth.module';
+import { SessionModule } from './session/session.module';
 
 require('dotenv').config()
 
@@ -18,7 +19,7 @@ require('dotenv').config()
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true,
   })
-    , UsersModule, StudentsModule, EmailModule, AuthModule]
+    , UsersModule, StudentsModule, AuthModule, SessionModule,EmailModule],
 })
 export class AppModule { }
 
