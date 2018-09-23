@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../dto/users.entity';
+import { EmailService } from '../../email/repository/email.service'
 import {CredentialsDTO} from 'auth/interfaces/credentials.dto';
 import {JwtPayload} from 'auth/interfaces/jwt-payload.interface';
 
 import * as bcrypt from 'bcryptjs';
-
 
 @Injectable()
 export class UsersService {

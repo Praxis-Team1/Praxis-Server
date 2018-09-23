@@ -14,7 +14,7 @@ export class User {
     documentNumber: number;
 
     @Column()
-    documentType: string;
+    documentType: string;  //standardize the arrangement of valid items
 
     @Column({
         type: "varchar",
@@ -22,12 +22,10 @@ export class User {
     })
     name: string;
 
-    @Column({
-        type: "varchar",
-        length: 50,
-    })
-    lastName: string;
+    @Column()
+    birthday: string;
 
+    @Index()
     @Column()
     @IsEmail()
     email: string;
@@ -43,6 +41,6 @@ export class User {
         type: "varchar",
         length: 250,
     })
-    biographic: string;
+    biography: string;
 
 }
