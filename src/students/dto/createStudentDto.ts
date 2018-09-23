@@ -14,9 +14,6 @@ export class CreateStudentDto {
     @IsString()
     readonly name: string;
 
-    @IsString()
-    readonly lastName: string;
-
     @Contains("unal.edu.co")
     @IsEmail()
     readonly email: string;
@@ -29,7 +26,7 @@ export class CreateStudentDto {
 
     @IsOptional()
     @IsString()
-    readonly biographic: string;
+    readonly biography: string;
 
     @IsIn(["Universidad Nacional de Colombia"])
     readonly university: string;
