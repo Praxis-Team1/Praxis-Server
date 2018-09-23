@@ -26,7 +26,7 @@ export class StudentsService {
     createdUser.lastName = studentDto.lastName;
     createdUser.name = studentDto.name;
     //Hash the password
-    let hash = bcrypt.hashSync(studentDto.password, 10);
+    let hash = bcrypt.hashSync(studentDto.password);
     createdUser.password = hash;
     //Create the user using the service UsersService
     await this.usersService.create(createdUser);
