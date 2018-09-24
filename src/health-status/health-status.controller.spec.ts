@@ -11,5 +11,6 @@ describe('HealthStatus Controller', () => {
   it('should be defined', () => {
     const controller: HealthStatusController = module.get<HealthStatusController>(HealthStatusController);
     expect(controller).toBeDefined();
+    
   });
 });
