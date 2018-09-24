@@ -32,6 +32,7 @@ export class User {
     })
     password: string;
 
+
     @Column({
         type: "varchar",
         length: 500,
