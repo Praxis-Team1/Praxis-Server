@@ -8,6 +8,7 @@ import { sendEmailDto } from '../dto/sendEmailDto'
 export class EmailService {
 
     constructor() {
+        
         sendGrid.setApiKey(process.env.SENDGRID);
     }
 
