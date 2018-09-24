@@ -5,6 +5,7 @@ import { StudentsModule } from './students/repository/students.module';
 import { EmailModule } from './email/repository/email.module';
 import { AuthModule } from './auth/repository/auth.module';
 import { SessionModule } from './session/repository/session.module';
+import { HealthStatusController } from './health-status/health-status.controller';
 
 require('dotenv').config()
 
@@ -20,6 +21,7 @@ require('dotenv').config()
     synchronize: true,
   })
     , UsersModule, StudentsModule, AuthModule, SessionModule, EmailModule],
+  controllers: [HealthStatusController],
 })
 export class AppModule { }
 
