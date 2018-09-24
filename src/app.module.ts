@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from 'users/repository/users.module';
-import { StudentsModule } from 'students/repository/students.module';
-import { EmailModule } from 'email/repository/email.module';
-import { AuthModule } from 'auth/repository/auth.module';
-import { SessionModule } from 'session/repository/session.module';
+import { UsersModule } from './users/repository/users.module';
+import { StudentsModule } from './students/repository/students.module';
+import { EmailModule } from './email/repository/email.module';
+import { AuthModule } from './auth/repository/auth.module';
+import { SessionModule } from './session/repository/session.module';
 
 require('dotenv').config()
 

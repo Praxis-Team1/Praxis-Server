@@ -1,6 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { SessionService } from './session.service';
-import { FindOperator } from 'typeorm';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('session')

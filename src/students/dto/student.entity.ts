@@ -1,5 +1,5 @@
 import { Entity, OneToOne, JoinColumn, Column } from 'typeorm'
-import { User } from 'users/dto/users.entity'
+import { User } from '../../users/dto/users.entity'
 
 @Entity()
 export class Student {

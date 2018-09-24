@@ -1,5 +1,5 @@
 import { IsString, IsInt, IsIn, IsEmail, Contains, MinLength, Matches, IsBoolean, Max, IsUrl, IsOptional } from 'class-validator';
-import { CreateUserDto } from 'users/dto/createUserDto';
+import { CreateUserDto } from '../../users/dto/createUserDto';
 
 export class CreateStudentDto extends CreateUserDto {
 
