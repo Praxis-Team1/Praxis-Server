@@ -26,7 +26,6 @@ export class User {
     @Column()
     email: string;
 
-    @Index({ unique: true })
     @Column({
         type: "varchar",
         length: 150,
