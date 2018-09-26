@@ -12,5 +12,6 @@ export class AuthController {
     @Post()
     signIn(@Body() credentialsDTO: CredentialsDTO) {
         return this.authService.signIn(credentialsDTO)
+
     }
 }
