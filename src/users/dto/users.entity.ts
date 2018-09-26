@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
-import { ApiModelProperty } from "@nestjs/swagger";
+import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger";
 
 @Entity()
 export class User {
@@ -40,7 +40,7 @@ export class User {
     })
     password: string;
 
-    @ApiModelProperty({ required: true, maximum: 500 })
+    @ApiModelPropertyOptional({ maximum: 500 })
     @Column({
         type: "varchar",
         length: 500,
