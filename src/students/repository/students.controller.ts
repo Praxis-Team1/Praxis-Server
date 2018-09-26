@@ -2,9 +2,10 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { CreateStudentDto } from '../dto/createStudentDto';
 import { CreateValidationPipe } from '../../pipes/ValidationPipe'
 import { StudentsService } from './students.service'
-import { ApiUseTags, ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiUseTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 
 @ApiUseTags('students')
+@ApiOkResponse({ type: Boolean })
 @Controller('students')
 export class StudentsController {
 
