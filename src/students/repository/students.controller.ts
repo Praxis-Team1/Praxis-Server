@@ -5,13 +5,12 @@ import { StudentsService } from './students.service'
 import { ApiUseTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 
 @ApiUseTags('students')
-@ApiOkResponse({ type: Boolean })
 @Controller('students')
 export class StudentsController {
 
     constructor(private readonly studentSevice: StudentsService) { }
 
-    @ApiCreatedResponse({ description: 'Student created successfully', type: CreateStudentDto })
+    @ApiCreatedResponse({ description: 'Student created successfully' })
     @Post()
     create(@Body(new CreateValidationPipe()) createStudentDto: CreateStudentDto) {
         return this.studentSevice.create(createStudentDto);

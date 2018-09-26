@@ -8,7 +8,7 @@ import { ApiUseTags, ApiOkResponse } from '@nestjs/swagger';
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
-    @ApiOkResponse({ type: Boolean })
+    @ApiOkResponse({ description: 'The user successfully login' })
     @Post()
     signIn(@Body() credentialsDTO: CredentialsDTO) {
         return this.authService.signIn(credentialsDTO)
