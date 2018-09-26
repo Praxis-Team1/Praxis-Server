@@ -9,13 +9,15 @@ import { ApiUseTags, ApiOkResponse, ApiCreatedResponse } from '@nestjs/swagger';
 export class UsersController {
     constructor(private readonly UsersSevice: UsersService) { }
 
+    /*
     @Get()
     @ApiOkResponse({ type: Boolean })
     @UseGuards(AuthGuard('jwt'))
     findAll(): Promise<User[]> {
         return this.UsersSevice.findAll();
-    }
+    }*/
 
+    /*
     @Post()
     @ApiCreatedResponse({ description: 'User created successfully', type: User })
     @ApiOkResponse({ type: Boolean })
@@ -24,6 +26,6 @@ export class UsersController {
     async create(@Body() createUser: User): Promise<User> {
         const user = await this.UsersSevice.create(createUser);
         return user;
-    }
+    }*/
 
 }
