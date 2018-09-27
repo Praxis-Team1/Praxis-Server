@@ -10,30 +10,30 @@ import { ApiUseTags, ApiOkResponse, ApiCreatedResponse } from '@nestjs/swagger';
 export class UsersController {
     constructor(private readonly UsersSevice: UsersService) { }
 
-    
-    @Get()
-    @UseGuards(AuthGuard('jwt'),RolesGuard)
-    @Roles('admin')
-    findAll(@Req() request): Promise<User[]> {
-       // return this.UsersSevice.findAll();
-        return request.user;
-    }
-    @ApiOkResponse({ type: Boolean })
-    @UseGuards(AuthGuard('jwt'))
-    findAll(): Promise<User[]> {
-        return this.UsersSevice.findAll();
-    }
-
-    /*
-    @Post()
-    @ApiCreatedResponse({ description: 'User created successfully', type: User })
-    @ApiOkResponse({ type: Boolean })
-    @UsePipes(new ValidationPipe({ transform: true }))
-
-    async create(@Body() createUser: User): Promise<User> {
-        const user = await this.UsersSevice.create(createUser);
-        return user;
-    }
-    }*/
+    /* 
+         @Get()
+         @UseGuards(AuthGuard('jwt'), RolesGuard)
+         @Roles('admin')
+         findAll(@Req() request): Promise<User[]> {
+             // return this.UsersSevice.findAll();
+             return request.user;
+         }
+         @ApiOkResponse({ type: Boolean })
+         @UseGuards(AuthGuard('jwt'))
+         findAll(): Promise<User[]> {
+             return this.UsersSevice.findAll();
+         }
+     
+      
+         @Post()
+         @ApiCreatedResponse({ description: 'User created successfully', type: User })
+         @ApiOkResponse({ type: Boolean })
+         @UsePipes(new ValidationPipe({ transform: true }))
+     
+         async create(@Body() createUser: User): Promise<User> {
+             const user = await this.UsersSevice.create(createUser);
+             return user;
+         }
+         }*/
 
 }

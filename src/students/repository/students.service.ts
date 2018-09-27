@@ -49,15 +49,14 @@ export class StudentsService {
       return { message: "correctly saved" };
 
     } catch (error) {
-      return { message: "Error saving" };
-
+      return { error };
     }
 
   }
 
-    async isStudent(user: User){
-      let userDB =await this.studentRepository.findOne({userId:user.id});
-      if(userDB) return true;
-      return false;
-    }
+  async isStudent(user: User) {
+    let userDB = await this.studentRepository.findOne({ userId: user.id });
+    if (userDB) return true;
+    return false;
+  }
 }
