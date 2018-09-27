@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../dto/jwt-payload.interface';
 import { UsersService } from '../../users/repository/users.service';
 import { CredentialsDTO } from '../dto/credentials.dto'
+import { User } from '../../users/dto/users.entity';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,9 @@ export class AuthService {
         //VALIDATE IF USER HAS ACCESS
         let validation = await this.usersService.validateCredentials(user);
         if (validation) {
-            let jwtUser: JwtPayload = { email: user.email };
+            let userDB: User = await this.usersService.getUserByEmail(user.email);
+            let roles = await this.usersService.getRoles(userDB);
+            let jwtUser: JwtPayload = { email: user.email , roles: roles};
             return { 'token': this.jwtService.sign(jwtUser) };
         }
         throw new UnauthorizedException('Credentials are not correct');;
