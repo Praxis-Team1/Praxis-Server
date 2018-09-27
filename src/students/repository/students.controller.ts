@@ -3,9 +3,9 @@ import { CreateStudentDto } from '../dto/createStudentDto';
 import { CreateValidationPipe } from '../../pipes/ValidationPipe'
 import { StudentsService } from './students.service'
 import { ApiUseTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
-import { Roles } from 'guards/decorators/roles.docoratos';
+import { Roles } from '../../guards/decorators/roles.docoratos';
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'guards/roles.guard';
+import { RolesGuard } from '../../guards/roles.guard';
 import { Student } from '../dto/student.entity';
 
 @ApiUseTags('students')
