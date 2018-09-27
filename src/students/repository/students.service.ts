@@ -1,5 +1,5 @@
 import { Injectable, Inject, forwardRef } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, createQueryBuilder } from 'typeorm';
 import { Student } from '../dto/student.entity';
 import { User } from '../../users/dto/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -44,7 +44,7 @@ export class StudentsService {
       //Create the student
       const createdStudent = new Student();
       createdStudent.user = createdUser;
-      createdStudent.admited = false;
+      createdStudent.admited = 'in review';
       createdStudent.semester = studentDto.semester;
       createdStudent.typeOfPraxis = studentDto.typeOfPraxis;
       createdStudent.university = studentDto.university;
@@ -67,9 +67,27 @@ export class StudentsService {
     return false;
   }
 
-  /*
-  async findOutstandingStudents(): Promise<Object> {
 
-    return await this.studentRepository.find({ where: {} });
-  }*/
+  async findInReviewStudents(): Promise<Object> {
+
+    try {
+
+      const studentList = await this.studentRepository
+        .createQueryBuilder("student")
+        .innerJoinAndSelect("student.user", "user")
+        .where("student.admited = :admited", { admited: "in review" })
+        .getMany();
+
+      studentList.map((student) => {
+        delete student.user.password;
+        return student;
+      })
+
+      return studentList;
+
+    } catch (error) {
+      return error;
+    }
+
+  }
 }

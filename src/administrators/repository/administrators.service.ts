@@ -3,12 +3,13 @@ import { Administrator } from '../dto/administrator.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from 'users/dto/users.entity';
+import { StudentsService } from 'students/repository/students.service';
 
 @Injectable()
 export class AdministratorsService {
   constructor(
     @InjectRepository(Administrator)
-    private readonly adminRepository: Repository<Administrator>,
+    private readonly adminRepository: Repository<Administrator>
   ) { }
 
   async isAdministrator(users: User): Promise<boolean> {
