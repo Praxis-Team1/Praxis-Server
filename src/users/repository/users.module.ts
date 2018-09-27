@@ -5,7 +5,7 @@ import { UsersService } from './users.service'
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../dto/users.entity';
-import { AdministratorsModule } from '../../administrators/administrators.module';
+import { AdministratorsModule } from '../../administrators/repository/administrators.module';
 import { StudentsModule } from '../../students/repository/students.module';
 
 @Module({

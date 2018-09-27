@@ -17,7 +17,7 @@ export class AuthService {
         let validation = await this.usersService.validateCredentials(user);
         if (validation) {
             let jwtUser: JwtPayload = { email: user.email };
-            return this.jwtService.sign(jwtUser)
+            return { 'token': this.jwtService.sign(jwtUser) };
         }
         throw new UnauthorizedException('Credentials are not correct');;
     }

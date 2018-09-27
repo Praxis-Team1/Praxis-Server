@@ -66,4 +66,10 @@ export class StudentsService {
     if (userDB) return true;
     return false;
   }
+
+  /*
+  async findOutstandingStudents(): Promise<Object> {
+
+    return await this.studentRepository.find({ where: {} });
+  }*/
 }

@@ -2,12 +2,11 @@ import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../dto/users.entity';
-import { EmailService } from '../../email/repository/email.service'
 import { CredentialsDTO } from 'auth/dto/credentials.dto';
 import { JwtPayload } from 'auth/dto/jwt-payload.interface';
 
 import * as bcrypt from 'bcryptjs';
-import { AdministratorsService } from '../../administrators/administrators.service';
+import { AdministratorsService } from '../../administrators/repository/administrators.service';
 import { StudentsService } from '../../students/repository/students.service';
 
 @Injectable()
