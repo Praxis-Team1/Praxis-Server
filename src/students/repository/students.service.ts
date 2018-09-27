@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Student } from '../dto/student.entity';
 import { User } from '../../users/dto/users.entity';
@@ -12,6 +12,7 @@ export class StudentsService {
   constructor(
     @InjectRepository(Student)
     private readonly studentRepository: Repository<Student>,
+    @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService
   ) { }
 
@@ -53,4 +54,10 @@ export class StudentsService {
     }
 
   }
+
+    async isStudent(user: User){
+      let userDB =await this.studentRepository.findOne({userId:user.id});
+      if(userDB) return true;
+      return false;
+    }
 }

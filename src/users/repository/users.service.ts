@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../dto/users.entity';
@@ -7,13 +7,18 @@ import { CredentialsDTO } from 'auth/dto/credentials.dto';
 import { JwtPayload } from 'auth/dto/jwt-payload.interface';
 
 import * as bcrypt from 'bcryptjs';
+import { AdministratorsService } from 'administrators/administrators.service';
+import { StudentsService } from 'students/repository/students.service';
 
 @Injectable()
 export class UsersService {
 
     constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        private readonly userRepository: Repository<User>,
+        private readonly adminService : AdministratorsService,
+        @Inject(forwardRef(() => StudentsService))
+        private readonly studentService : StudentsService
     ) { }
 
     async findAll(): Promise<User[]> {
@@ -26,11 +31,25 @@ export class UsersService {
 
     async validateCredentials(user: CredentialsDTO): Promise<Boolean> {
         let userDB: User = await this.userRepository.findOne({ email: user.email });
+        if (!userDB){
+            return false;
+        }
         let hash = bcrypt.compareSync(user.password, userDB.password);
         return hash;
     }
 
     async validateUser(payload: JwtPayload): Promise<User> {
         return await this.userRepository.findOne({ email: payload.email });
+    }
+
+    async hasRoles(roles: String[], user: User):Promise<Boolean>{
+        if(roles.indexOf("admin")>=0){
+            return await this.adminService.isAdministrator(user)
+        }else if(roles.indexOf("student")>=0){
+            return await this.studentService.isStudent(user)
+        }else if(roles.indexOf("teacher")>=0){
+            return false
+        }
+        return false;
     }
 }

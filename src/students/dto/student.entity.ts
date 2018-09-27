@@ -4,8 +4,11 @@ import { User } from '../../users/dto/users.entity'
 @Entity()
 export class Student {
 
-    @OneToOne(type => User, { primary: true })
-    @JoinColumn()
+    @Column( { primary: true })
+    userId:number
+
+    @OneToOne(type => User)
+    @JoinColumn({ name: "userId" })
     user: User;
 
     @Column()
