@@ -41,6 +41,10 @@ export class UsersService {
         return await this.userRepository.findOne({ email: payload.email });
     }
 
+    async getUserByEmail(email: string): Promise<User>{
+        return await this.userRepository.findOne({ email: email });
+    }
+
     async hasRoles(roles: String[], user: User): Promise<Boolean> {
         if (roles.indexOf("admin") >= 0) {
             return await this.adminService.isAdministrator(user)
@@ -50,5 +54,18 @@ export class UsersService {
             return false
         }
         return false;
+    }
+
+    async getRoles(user:User){
+        let isadmin = await this.adminService.isAdministrator(user);
+        let isStudent = await this.studentService.isStudent(user);
+        //let isTeacher = await this.studentService.isStudent(user);
+
+        let roles = [];
+        if(isadmin) roles.push('admin');
+        if(isStudent) roles.push('student');
+
+        return roles; 
+
     }
 }
