@@ -18,4 +18,7 @@ export class Session {
 
     @Column()
     site: string;
+
+    @Column()
+    teacher: string;
 }
