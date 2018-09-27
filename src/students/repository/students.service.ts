@@ -5,6 +5,7 @@ import { User } from '../../users/dto/users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateStudentDto } from '../dto/createStudentDto'
 import { UsersService } from '../../users/repository/users.service';
+import { EmailService } from '../../email/repository/email.service';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -13,8 +14,12 @@ export class StudentsService {
     @InjectRepository(Student)
     private readonly studentRepository: Repository<Student>,
     @Inject(forwardRef(() => UsersService))
-    private readonly usersService: UsersService
-  ) { }
+    private readonly usersService: UsersService,
+    @Inject(forwardRef(() => EmailService))
+    private readonly emailService: EmailService
+  ) {
+
+  }
 
   async create(studentDto: CreateStudentDto): Promise<Object> {
 
@@ -46,6 +51,7 @@ export class StudentsService {
       createdStudent.videoUrl = studentDto.videoUrl;
 
       await this.studentRepository.save(createdStudent);
+      await this.emailService.successfulSignUp(newUser.email, newUser.name);
       return { message: "correctly saved" };
 
     } catch (error) {
