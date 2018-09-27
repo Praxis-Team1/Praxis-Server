@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Param, NotFoundException } from '@nestjs/common';
 import { CreateStudentDto } from '../dto/createStudentDto';
 import { CreateValidationPipe } from '../../pipes/ValidationPipe'
 import { StudentsService } from './students.service'
@@ -26,5 +26,12 @@ export class StudentsController {
     @Get('/review')
     async findInReviewStudents(): Promise<any> {
         return await this.studentSevice.findInReviewStudents();
+    }
+
+
+    @Get('/admissionResult/:id/:result')
+    async admissionResult(@Param('id') id: number, @Param('result') result: boolean): Promise<any> {
+
+        return await this.studentSevice.admissionResult(id, result);
     }
 }

@@ -90,4 +90,31 @@ export class StudentsService {
     }
 
   }
+
+  async admissionResult(id: number, result: boolean): Promise<any> {
+
+    try {
+
+      const updateResult = await this.studentRepository.update({ userId: id }, { admited: (result == true ? 'accepted' : 'rejected') });
+      const user = (await this.usersService.findById(id))[0];
+
+      if (updateResult.raw.affectedRows != 0) {
+        console.log(result.toString());
+        if (result.toString() == 'true') {
+          console.log("Entro 1");
+          await this.emailService.resultTrue(user.email, user.name);
+        } else {
+          console.log("Entro 2");
+          await this.emailService.resultFalse(user.email, user.name);
+        }
+
+        return { message: 'updated correctly' };
+      } else {
+        return { message: 'there is no user with that id' };
+      }
+    } catch (error) {
+      return { error };
+    }
+
+  }
 }
